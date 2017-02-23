@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG Growing circle</title>
+    <style>
+        #tela{
+            border:1px solid #000000;
+        }
+    </style>
+    <script>
+        var size_1=10;
+        var size_2;
+        var timer;
+        function call(){
+            timer = setInterval(drawCircleTopic,10);
+        }
+        function drawCircleTopic() {
+            size_1=size_1+10;
+            document.getElementById("topic-circle").setAttribute("r", size_1);
+            console.log(size_1);
+            if(size_1>=200){
+                clearInterval(timer);
+                console.log("End! "+size_1);
+                size_2 = size_1;
+                timer = setInterval(drawCircleChannel,20);
+            }
+        }
+        function drawCircleChannel() {
+            size_2 = size_2 + 10;
+            document.getElementById("channel-circle").setAttribute("r", size_2);
+            console.log(size_2);
+            if (size_2 >= 350) {
+                clearInterval(timer);
+                console.log("End! " + size_2);
+            }
+        }
+    </script>
+</head>
+<body>
+<svg id="tela" width="500" height="500" onmousedown="call()">
+    <g id="channel-list">
+        <circle id="channel-circle" cx="0" cy="0" r="10" fill="#111111" />
+        <circle id="topic-circle" cx="0" cy="0" r="10" fill="#000000" />
+    </g>
+</svg>
+</body>
+</html>
